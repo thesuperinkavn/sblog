@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Post;
+use Auth;
 
 class HomeController extends Controller
 {
@@ -23,6 +25,12 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $posts = Post::where('author',Auth::id())->get();
+        $params = [
+            'title'         => 'TẤT CẢ BÀI VIẾT',
+            'posts'         => $posts,
+            'js'            => 'components.post.home-js'
+        ];
+        return view('home')->with($params);
     }
 }

@@ -6,5 +6,5 @@
 @endsection
 
 @section('content')
-    @include('pages.home')
+    @include('components.post.create')
 @endsection
