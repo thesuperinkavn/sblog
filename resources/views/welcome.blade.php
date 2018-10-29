@@ -1,96 +1,97 @@
-<!doctype html>
-<html lang="{{ app()->getLocale() }}">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <title> @yield('title')</title>
 
-        <title>Laravel</title>
+	<!-- HEAD -->
+    @include("layouts.elements.head")
 
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet" type="text/css">
+	<!-- Theme JS files -->
+	
+	@yield('head-js')
+	<script type="text/javascript" src="{{ asset('theme/assets/js/core/app.js') }}"></script>
 
-        <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Nunito', sans-serif;
-                font-weight: 200;
-                height: 100vh;
-                margin: 0;
-            }
+	<!-- /theme JS files -->
 
-            .full-height {
-                height: 100vh;
-            }
+</head>
 
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
+<body>
+    <!-- MAIN-NAV -->
+    @include("layouts.elements.main-nav")
+	
+	<!-- Page container -->
+	<div class="page-container">
 
-            .position-ref {
-                position: relative;
-            }
+		<!-- Page content -->
+		<div class="page-content">
 
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
+			<!-- Main content -->
+			<div class="content-wrapper">
 
-            .content {
-                text-align: center;
-            }
+				<!-- Content area -->
+				<div class="content">
+                    
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm-12">
+    
+                                <!-- Clean blog layout #1 -->
+                                <div class="panel panel-flat">
+                                    <div class="panel-heading">
+                                        <h5 class="panel-title text-semibold">
+                                            <a href="#">Blog post layout #1 with image</a>
+                                        </h5>
+                                    </div>
+    
+                                    <div class="panel-body">
+                                        <p>One morning, when Gregor Samsa woke from troubled dreams, he found himself transformed in his bed into a horrible vermin. He lay on his armour-like back, and if he lifted his head a little he could see his brown belly, slightly domed and divided by arches into stiff sections.</p>
+    
+                                        <blockquote>
+                                            <p>When suspiciously goodness labrador understood rethought yawned grew piously endearingly inarticulate oh goodness jeez trout distinct hence cobra.</p>
+                                            <footer>Jason, <cite title="Source Title">10:39 am</cite></footer>
+                                        </blockquote>
+                                    </div>
+    
+                                    <div class="panel-footer panel-footer-transparent">
+                                        <div class="heading-elements">
+                                            <ul class="list-inline list-inline-separate heading-text text-muted">
+                                                <li>By <a href="#" class="text-muted">Eugene</a></li>
+                                                <li>July 5th, 2016</li>
+                                                <li><a href="#" class="text-muted"><i class="icon-heart6 text-size-base text-pink position-left"></i> 281</a></li>
+                                            </ul>
+    
+                                            <a href="#" class="heading-text pull-right">Read more <i class="icon-arrow-right14 position-right"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /clean blog layout #1 -->
+    
+                            </div>
+    
+                        </div>
+    
+                    </div>
+					<!-- Footer -->
+					<div class="footer text-muted">
+						&copy; 2018. <a href="#">SIMBLOG</a> by <a href="#" target="_blank">Inka</a>
+					</div>
+					<!-- /footer -->
 
-            .title {
-                font-size: 84px;
-            }
+				</div>
+				<!-- /content area -->
 
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 12px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
+			</div>
+			<!-- /main content -->
 
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
-                        <a href="{{ route('register') }}">Register</a>
-                    @endauth
-                </div>
-            @endif
+		</div>
+		<!-- /page content -->
 
-            <div class="content">
-                <div class="title m-b-md">
-                    Laravel
-                </div>
-
-                <div class="links">
-                    <a href="https://laravel.com/docs">Documentation</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
-                </div>
-            </div>
-        </div>
-    </body>
+	</div>
+	<!-- /page container -->
+</body>
 </html>

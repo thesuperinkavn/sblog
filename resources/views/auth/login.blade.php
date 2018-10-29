@@ -1,71 +1,126 @@
-@extends('layouts.app')
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>LOGIN PAGE - MIBLOG</title>
+    
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
+	<!-- Global stylesheets -->
+	<link href="https://fonts.googleapis.com/css?family=Roboto+Slab" rel="stylesheet">
+	<link href="{{ asset('theme/assets/css/icons/icomoon/styles.css') }}" rel="stylesheet" type="text/css">
+	<link href="{{ asset('theme/assets/css/bootstrap.css') }}" rel="stylesheet" type="text/css">
+	<link href="{{ asset('theme/assets/css/core.css') }}" rel="stylesheet" type="text/css">
+	<link href="{{ asset('theme/assets/css/components.css') }}" rel="stylesheet" type="text/css">
+	<link href="{{ asset('theme/assets/css/colors.css') }}" rel="stylesheet" type="text/css">
+	<!-- /global stylesheets -->
 
-                <div class="card-body">
-                    <form method="POST" action="{{ route('login') }}">
-                        @csrf
+	<!-- Core JS files -->
+	<script type="text/javascript" src="{{ asset('theme/assets/js/plugins/loaders/pace.min.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('theme/assets/js/core/libraries/jquery.min.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('theme/assets/js/core/libraries/bootstrap.min.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('theme/assets/js/plugins/loaders/blockui.min.js') }}"></script>
+	<!-- /core JS files -->
 
-                        <div class="form-group row">
-                            <label for="email" class="col-sm-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+	<!-- Theme JS files -->
+	<script type="text/javascript" src="{{ asset('theme/assets/js/plugins/forms/styling/uniform.min.js') }}"></script>
 
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus>
+	<script type="text/javascript" src="{{ asset('theme/assets/js/core/app.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('theme/assets/js/pages/login.js') }}"></script>
+	<!-- /theme JS files -->
 
+</head>
+
+<body class="login-container">
+	<!-- MAIN-NAV -->
+    @include("layouts.elements.main-nav")
+	<!-- Page container -->
+	<div class="page-container">
+
+		<!-- Page content -->
+		<div class="page-content">
+
+			<!-- Main content -->
+			<div class="content-wrapper">
+
+				<!-- Content area -->
+				<div class="content">
+
+					<!-- Advanced login -->
+					<form action="" method ="POST">
+
+                        {{ csrf_field() }}
+
+						<div class="panel panel-body login-form">
+							<div class="text-center">
+								<div class="icon-object border-slate-300 text-slate-300"><i class="icon-reading"></i></div>
+								<h5 class="content-group">Đăng Nhập Vào Hệ Thống <small class="display-block">Dành cho Author</small></h5>
+							</div>
+
+							<div class="form-group has-feedback has-feedback-left">
+                                <input id="email" type="email" class="form-control" placeholder="Email" name="email" value="{{ old('email') }}" required autofocus>
+								<div class="form-control-feedback">
+									<i class="icon-user text-muted"></i>
+                                </div>
                                 @if ($errors->has('email'))
-                                    <span class="invalid-feedback" role="alert">
+                                    <span class="help-block">
                                         <strong>{{ $errors->first('email') }}</strong>
                                     </span>
                                 @endif
-                            </div>
-                        </div>
+							</div>
 
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
-
+							<div class="form-group has-feedback has-feedback-left">
+                                    <input id="password" type="password" placeholder="Password" class="form-control" name="password" required>
+								<div class="form-control-feedback">
+									<i class="icon-lock2 text-muted"></i>
+                                </div>
+                                
                                 @if ($errors->has('password'))
-                                    <span class="invalid-feedback" role="alert">
+                                    <span class="help-block">
                                         <strong>{{ $errors->first('password') }}</strong>
                                     </span>
                                 @endif
-                            </div>
-                        </div>
+							</div>
 
-                        <div class="form-group row">
-                            <div class="col-md-6 offset-md-4">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+							<div class="form-group login-options">
+								<div class="row">
+									<div class="col-sm-6">
+										<label class="checkbox-inline">
+                                            <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}>
+											Ghi nhớ
+										</label>
+									</div>
 
-                                    <label class="form-check-label" for="remember">
-                                        {{ __('Remember Me') }}
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
+									<div class="col-sm-6 text-right">
+                                        <a class="btn btn-link" href="{{ route('password.request') }}">
+                                            Quên Mật Khẩu?
+                                        </a>
+									</div>
+								</div>
+							</div>
 
-                        <div class="form-group row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Login') }}
-                                </button>
+							<div class="form-group">
+								<button type="submit" class="btn bg-blue btn-block">Đăng Nhập <i class="icon-arrow-right14 position-right"></i></button>
+							</div>
 
-                                <a class="btn btn-link" href="{{ route('password.request') }}">
-                                    {{ __('Forgot Your Password?') }}
-                                </a>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-@endsection
+						</div>
+					</form>
+					<!-- /advanced login -->
+
+				</div>
+				<!-- /content area -->
+
+			</div>
+			<!-- /main content -->
+
+		</div>
+		<!-- /page content -->
+
+	</div>
+	<!-- /page container -->
+
+</body>
+</html>

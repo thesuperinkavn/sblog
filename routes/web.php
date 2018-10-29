@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('layouts.app');
+    return view('welcome');
 });
 
 Route::prefix('admin')->group(function() {
@@ -21,6 +21,7 @@ Route::prefix('admin')->group(function() {
     Route::get('/home', 'AdminController@index')->name('admin.home');
     Route::any('/approve', 'AdminController@approve')->name('admin.approve');
     Route::any('/unapprove', 'AdminController@unapprove')->name('admin.unapprove');
+    Route::any('/dashboard', 'AdminController@index')->name('admin.home');
 });
 
 Auth::routes();

@@ -1,99 +1,59 @@
 <!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <title> @yield('title')</title>
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+	<!-- HEAD -->
+    @include("layouts.elements.head")
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+	<!-- Theme JS files -->
+	
+	@yield('head-js')
+	<script type="text/javascript" src="{{ asset('theme/assets/js/core/app.js') }}"></script>
 
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
+	<!-- /theme JS files -->
 
-    <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
+
 <body>
-    <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+	<!-- MAIN-NAV -->
+    @include("layouts.elements.main-nav")
+	
+	<!-- Page container -->
+	<div class="page-container">
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
+		<!-- Page content -->
+		<div class="page-content">
 
-                    </ul>
+			<!-- Main content -->
+			<div class="content-wrapper">
 
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
-                        <!-- Authentication Links -->
-                        @if (Auth::guard('admin')->check() || Auth::guard()->check())
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    @if (Auth::guard('admin')->check())
-                                        Admin
-                                    @else 
-                                        {{ Auth::user()->name }} 
-                                    @endif
-                                    <span class="caret"></span>
-                                </a>
+				<!-- Content area -->
+				<div class="content">
+                    
+                    @yield('content')
 
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    @if (Auth::guard('admin')->check())
-                                        <a class="dropdown-item" href="http://laravelapp/admin/dashboard">Dashboard</a>
-                                    @else   
-                                        <a class="dropdown-item" href="http://laravelapp/dashboard">Dashboard</a> 
-                                    @endif
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                        onclick="event.preventDefault();
-                                                        document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
+					<!-- Footer -->
+					<div class="footer text-muted">
+						&copy; 2018. <a href="#">SIMBLOG</a> by <a href="#" target="_blank">Inka</a>
+					</div>
+					<!-- /footer -->
 
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                        @else
-                        <li class="nav-item dropdown">
-                                <a id="linkDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ __('Login') }}
-                                    <span class="caret"></span>
-                                </a>
+				</div>
+				<!-- /content area -->
 
-                                <div class="dropdown-menu" aria-labelledby="linkDropdown">
-                                    <a class="dropdown-item" href="{{ route('login') }}">
-                                        {{ __('User') }}
-                                    </a>
-                                    <a class="dropdown-item" href="{{ route('admin.login') }}">
-                                        {{ __('Admin') }}
-                                    </a>
-                                </div>
-                            </li>
-                            <li><a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a></li>
-                        @endif
-                    </ul>
-                </div>
-            </div>
-        </nav>
+			</div>
+			<!-- /main content -->
 
-        <main class="py-4">
-            @yield('content')
-        </main>
-    </div>
+		</div>
+		<!-- /page content -->
+
+	</div>
+	<!-- /page container -->
 </body>
 </html>

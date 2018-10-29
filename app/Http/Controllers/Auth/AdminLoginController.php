@@ -25,6 +25,6 @@ class AdminLoginController extends Controller
     use AuthenticatesUsers;
 
     //Redirect after login
-    protected $redirectTo = '/admin/dashboard';
+    protected $redirectTo = '/admin/home';
  
 }
