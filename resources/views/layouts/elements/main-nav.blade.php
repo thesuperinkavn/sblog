@@ -21,7 +21,13 @@
             @if (Auth::guard('admin')->check() || Auth::guard()->check())
             <li class="dropdown dropdown-user">
                 <a class="dropdown-toggle" data-toggle="dropdown">
-                    <span>{{Auth::user()->email}}</span>
+                    <span>
+                        @if (Auth::guard('admin')->check())
+                            Admin
+                        @else 
+                            {{ Auth::user()->name }} 
+                        @endif
+                    </span>
                     <i class="caret"></i>
                 </a>
 
@@ -49,7 +55,7 @@
                     <ul class="dropdown-menu dropdown-menu-right">
                         <li>
                             <a class="dropdown-item" href="{{ route('login') }}">
-                                {{ __('User') }}
+                                {{ __('Author') }}
                             </a>
                         </li>
                         <li>

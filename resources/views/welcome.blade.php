@@ -38,41 +38,39 @@
                     
                     <div class="container">
                         <div class="row">
+                            @foreach($posts as $post)
                             <div class="col-sm-12">
     
                                 <!-- Clean blog layout #1 -->
                                 <div class="panel panel-flat">
                                     <div class="panel-heading">
                                         <h5 class="panel-title text-semibold">
-                                            <a href="#">Blog post layout #1 with image</a>
+                                            <a href="#">{{$post->name}}</a>
                                         </h5>
                                     </div>
     
                                     <div class="panel-body">
-                                        <p>One morning, when Gregor Samsa woke from troubled dreams, he found himself transformed in his bed into a horrible vermin. He lay on his armour-like back, and if he lifted his head a little he could see his brown belly, slightly domed and divided by arches into stiff sections.</p>
+                                        <p>{{$post->description}}.</p>
     
                                         <blockquote>
-                                            <p>When suspiciously goodness labrador understood rethought yawned grew piously endearingly inarticulate oh goodness jeez trout distinct hence cobra.</p>
-                                            <footer>Jason, <cite title="Source Title">10:39 am</cite></footer>
+                                            <p>{!! $post->content !!}.</p>
+                                            <footer>Update:  <cite title="Source Title">{{$post->updated_at}}</cite></footer>
                                         </blockquote>
                                     </div>
     
                                     <div class="panel-footer panel-footer-transparent">
                                         <div class="heading-elements">
                                             <ul class="list-inline list-inline-separate heading-text text-muted">
-                                                <li>By <a href="#" class="text-muted">Eugene</a></li>
-                                                <li>July 5th, 2016</li>
-                                                <li><a href="#" class="text-muted"><i class="icon-heart6 text-size-base text-pink position-left"></i> 281</a></li>
+                                                <li>By <a href="#" class="text-muted">{{$post->username}}</a></li>
+                                                <li>{{$post->created_at}}</li>
                                             </ul>
-    
-                                            <a href="#" class="heading-text pull-right">Read more <i class="icon-arrow-right14 position-right"></i></a>
                                         </div>
                                     </div>
                                 </div>
                                 <!-- /clean blog layout #1 -->
     
                             </div>
-    
+                            @endforeach
                         </div>
     
                     </div>

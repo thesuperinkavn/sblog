@@ -40,7 +40,7 @@ class PostController extends Controller
     public function edit($id)
     {
         $post = Post::find($id);
-        return view('pages.post-edit', $array=['title'=>'Sửa bài viết', 'js'=>'js.postcreate-js', 'post'=>$post]);
+        return view('pages.edit-post', $array=['title'=>'Sửa bài viết', 'js'=>'components.post.createpost-js', 'post'=>$post]);
     }
 
     public function update(Request $request, $id)
@@ -54,7 +54,7 @@ class PostController extends Controller
         $post->description = $request->get('description');
         $post->content = $request->get('content');
         $post->save();
-        return redirect('/post')->with('success', 'Sửa bài viết thành công');
+        return redirect('/home')->with('success', 'Sửa bài viết thành công');
     }
 
     public function destroy(Request $request)
