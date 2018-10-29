@@ -9,13 +9,13 @@ How to use:
 - Run php artisan key:generate
 - Run php artisan migrate
 - Use tinker to set Admin email and password : 
-    //
+    ```
     php artisan tinker
     $admin = App\Admin
     $admin->email = 'admin@admin.com'
     $admin->password = Hash::make('123456')
     $admin->save()
-    //
+    ```
 
 - Run php artisan serve and go to localhost
 See demo at : http://inkavn.tk
