@@ -18,9 +18,15 @@ Route::get('/', function () {
 Route::prefix('admin')->group(function() {
     Route::get('/login', 'Auth\AdminLoginController@showLoginForm')->name('admin.login');
     Route::post('/login', 'Auth\AdminLoginController@login')->name('admin.login.submit');
-    Route::get('/dashboard', 'AdminController@index')->name('admin.dashboard');
+    Route::get('/home', 'AdminController@index')->name('admin.home');
+    Route::any('/approve', 'AdminController@approve')->name('admin.approve');
+    Route::any('/unapprove', 'AdminController@unapprove')->name('admin.unapprove');
 });
 
 Auth::routes();
 
-Route::get('/dashboard', 'HomeController@index')->name('dashboard');
+Route::get('/home', 'HomeController@index')->name('dashboard');
+
+Route::resource('post', 'PostController');
+Route::get('/post/destroy', 'PostController@destroy');
+Route::post('/post/destroy', 'PostController@destroy');
